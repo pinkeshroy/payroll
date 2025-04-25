@@ -1,5 +1,7 @@
 # Payroll Management System - Backend
 
+[![GitHub Repo](https://img.shields.io/badge/Repo-Link-blue?logo=github)](https://github.com/your-username/payroll-app)
+
 A complete payroll backend built with Node.js, TypeScript, Express.js, PostgreSQL, and Prisma ORM.
 
 ---
@@ -111,35 +113,114 @@ A complete payroll backend built with Node.js, TypeScript, Express.js, PostgreSQ
 
 ---
 
-## 📋 Setup Instructions
+## 📋 Setup Instructions (Local Development)
 
-### 1. Install Dependencies
+Follow these steps to setup the Payroll Management backend locally:
 
+---
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/payroll-app.git
+cd payroll-app
 ```
+
+> Replace `your-username` with your real GitHub username.
+
+---
+
+### 2. Install Dependencies
+
+```bash
 npm install
 ```
 
-### 2. Setup Environment Variables
+---
 
-```
-DATABASE_URL="your-database-url?sslmode=require"
-JWT_SECRET="your-jwt-secret"
+### 3. Setup Environment Variables
+
+Create a `.env` file at the project root:
+
+```env
+DATABASE_URL="postgresql://your_local_user@localhost:5432/payroll"
+JWT_SECRET="your_jwt_secret_here"
 ```
 
-### 3. Prisma Database Migration
+- **DATABASE_URL:** 
+  - If using local Postgres, make sure database `payroll` exists.
+  - Use the correct Postgres user that has access.
+- **JWT_SECRET:**
+  - Set any secret key for signing JWT tokens.
 
-```
+---
+
+### 4. Setup the Database
+
+First, generate the Prisma Client:
+
+```bash
 npx prisma generate
+```
+
+Then push the schema to the database:
+
+```bash
 npx prisma db push
+```
+
+Seed the database with an Admin user:
+
+```bash
 npm run seed
 ```
 
-### 4. Start Development Server
+✅ This will create an admin user:
+- **Email:** `admin@corp.io`
+- **Password:** `admin@123`
 
-```
+---
+
+### 5. Start Development Server
+
+```bash
 npm run dev
 ```
 
-Server running at: http://localhost:4000
+Server will start at:
+
+```
+http://localhost:4000
+```
+
+---
+
+### 6. Test the APIs
+
+You can now test the APIs using:
+- Postman
+- Curl
+- Frontend client
+
+Use the login API to authenticate and then access protected routes.
+
+---
+
+## 🛠 Local Development Requirements
+
+| Tool          | Version Recommended |
+|:--------------|:--------------------|
+| Node.js       | 18+                 |
+| PostgreSQL    | 13+                 |
+| npm           | 9+                  |
+| Prisma        | Latest              |
+
+---
+
+## 👨‍💻 Author
+
+**Pinkesh Roy**
+
+- [GitHub](https://github.com/pinkeshroy)
 
 ---
