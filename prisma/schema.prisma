@@ -1,0 +1,80 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  HR
+  EMPLOYEE
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  email       String    @unique
+  password    String
+  role        Role      @default(EMPLOYEE)
+
+  // 1-to-1 relation with Employee
+  employeeId  Int?      @unique
+  employee    Employee? @relation("UserEmployee", fields: [employeeId], references: [id])
+
+  createdAt   DateTime  @default(now())
+}
+
+model Employee {
+  id           Int       @id @default(autoincrement())
+  firstName    String
+  lastName     String
+  basicSalary  Decimal
+  hra          Decimal
+  allowances   Decimal
+  otherDeduct  Decimal    @default(0)
+
+  // back-relation to User
+  user         User?      @relation("UserEmployee")
+
+  attendances  Attendance[]
+  salaries     Salary[]
+}
+
+model Attendance {
+  id          Int       @id @default(autoincrement())
+  employeeId  Int
+  date        DateTime
+  clockIn     DateTime
+  clockOut    DateTime
+  hoursWorked Decimal
+  employee    Employee  @relation(fields: [employeeId], references: [id])
+
+  @@unique([employeeId, date], name: "employeeId_date")
+}
+
+model Salary {
+  id          Int      @id @default(autoincrement())
+  employeeId  Int
+  month       String
+  gross       Decimal
+  tax         Decimal
+  pf          Decimal
+  totalSalary Decimal
+  net         Decimal
+  totalDays   Int
+  fullDays    Int
+  halfDays    Int
+  generatedAt DateTime @default(now())
+  employee    Employee @relation(fields: [employeeId], references: [id])
+
+  @@unique([employeeId, month], name: "employeeId_month")
+}
+
+model Payroll {
+  id     Int      @id @default(autoincrement())
+  month  String   @unique
+  amount Decimal
+  runAt  DateTime @default(now())
+}
