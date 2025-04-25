@@ -1,6 +1,6 @@
 # Payroll Management System - Backend
 
-[![GitHub Repo](https://img.shields.io/badge/Repo-Link-blue?logo=github)](https://github.com/your-username/payroll-app)
+[![GitHub Repo](https://img.shields.io/badge/Repo-Link-blue?logo=github)](https://github.com/pinkeshroy/payroll)
 
 A complete payroll backend built with Node.js, TypeScript, Express.js, PostgreSQL, and Prisma ORM.
 
@@ -33,7 +33,7 @@ A complete payroll backend built with Node.js, TypeScript, Express.js, PostgreSQ
 ## 📂 Folder Structure
 
 ```
-/payroll-app
+/payroll
 ├── prisma/
 │   ├── schema.prisma   # Database schema
 │   ├── seed.ts         # Seed admin user
@@ -122,12 +122,9 @@ Follow these steps to setup the Payroll Management backend locally:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/payroll-app.git
-cd payroll-app
+git clone https://github.com/pinkeshroy/payroll.git
+cd payroll
 ```
-
-> Replace `your-username` with your real GitHub username.
-
 ---
 
 ### 2. Install Dependencies
